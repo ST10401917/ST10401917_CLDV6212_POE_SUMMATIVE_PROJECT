@@ -27,7 +27,7 @@
             <tr>
                 <td>@item.ProductName</td>
                 <td>@item.Quantity</td>
-                <td>@item.Total_Amount.ToString("C")</td>
+                <td>@item.Total_Amount.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-ZA"))</td>
                 <td>@item.Order_Date.ToString("yyyy/MM/dd")</td>
                 <td>
                     @if (item.Status == "PROCESSED")

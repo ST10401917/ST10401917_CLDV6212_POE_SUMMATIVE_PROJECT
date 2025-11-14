@@ -20,9 +20,9 @@ namespace CLDV6212_POE_PART_1.Models
         [Required(ErrorMessage = "Please enter a Address")]
         public string? Address { get; set; }
 
-        public string Username { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? Username { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
         public string? PartitionKey { get; set; }
         public string? RowKey { get; set; }
