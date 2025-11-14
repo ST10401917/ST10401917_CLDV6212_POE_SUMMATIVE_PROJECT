@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CLDV6212_POE_PART_1.ViewModels.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2 class="text-center my-4"> Place or browse your orders here! </h2>
+
+<<p class="text-center">
+    <a asp-action="AddOrder" class="btn btn-primary">Create A New Order Here</a>
+</p>
+
+<table class="rounded-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total_Amount)
+            </th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Status</th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Amount)
+            </td>
+<td>@(item.CustomerName ?? "Username")</td>
+                <td>@item.ProductName</td>
+                <td>
+                    @if (item.Status == "PROCESSED")
+                    {
+                        <span class="badge bg-success">@item.Status</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">@item.Status</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Status != "PROCESSED")
+                    {
+                        <form asp-action="MarkProcessed" asp-controller="Order" method="post">
+                            <input type="hidden" name="partitionKey" value="@item.PartitionKey" />
+                            <input type="hidden" name="rowKey" value="@item.RowKey" />
+                            <button type="submit" class="btn btn-sm btn-primary">Mark Processed</button>
+                        </form>
+                    }
+                    </td>
+            <td>
+                <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="PartitionKey" value="@item.PartitionKey" />
+                        <input type="hidden" name="RowKey" value="@item.RowKey" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure');">Delete</button>
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

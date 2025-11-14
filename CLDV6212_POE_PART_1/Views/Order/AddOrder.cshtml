@@ -1,0 +1,63 @@
+﻿@model CLDV6212_POE_PART_1.Models.Order
+
+@{
+    var customers = ViewBag.Customers as List<CLDV6212_POE_PART_1.Models.Customer>;
+    var products = ViewBag.Products as List<CLDV6212_POE_PART_1.Models.Product>;
+
+}
+
+<h2>Create your Order here</h2>
+
+@if (customers == null || customers.Count == 0 || products == null || products.Count == 0)
+{
+    <div class="alert alert-warning">
+        No customers or products available
+    </div>
+}
+else
+{
+
+    <form asp-action="AddOrder" asp-controller="Order" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Customer_Id">Select Customer</label>
+            <select asp-for="Customer_Id" class="form-control"
+                    asp-items="@(new SelectList(ViewBag.Customers, "RowKey", "Customer_Name"))">
+                <option value="">  Select Customer   </option>
+        </select>
+        <span asp-validation-for="Customer_Id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Product_Id">Select Customer</label>
+            <select asp-for="Product_Id" class="form-control"
+                    asp-items="@(new SelectList(ViewBag.Products, "RowKey", "Product_Name"))">
+                <option value="">   Select Product   </option>
+            </select>
+            <span asp-validation-for="Product_Id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Quantity</label>
+            <input asp-for="Quantity" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Total Price</label>
+            <input asp-for="Total_Amount" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Order Date</label>
+            <input asp-for="Order_Date" type="date" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+}
+}

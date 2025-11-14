@@ -1,0 +1,30 @@
+﻿﻿@{
+ViewData["Title"] = "Welcome to Pixel Heaven";
+}
+
+<!-- Hero Section -->
+<section class="hero-section text-white text-center d-flex flex-column justify-content-center align-items-center">
+    <div>
+        <h1 class="display-4 fw-bold mb-3">Welcome to Pixel Heaven</h1>
+        <p class="lead mb-4">Your number one game shop to get lastest and hottest games on the market</p>
+
+        <!-- Features Section -->
+        <section class="container my-5">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">What You Can Do?</h2>
+                <p class="fw-bold">Add a Customer, Browse all the available games and Create orders</p>
+            </div>
+
+        </section>
+        @{
+            var role = Context.Session.GetString("Role");
+        }
+        @if (role == "Admin")
+        {
+            <a class="btn btn-success btn-lg me-2" asp-controller="Customer" asp-action="AddCustomer">Add Customer</a>
+            <a class="btn btn-warning btn-lg" asp-controller="Order" asp-action="AddOrder">Create an Order</a>
+        }
+        <a class="btn btn-primary btn-lg me-2" asp-controller="Product" asp-action="Index">Browse Products</a>
+
+    </div>
+</section>

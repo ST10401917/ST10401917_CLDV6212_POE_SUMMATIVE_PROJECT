@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CLDV6212_POE_PART_1.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customer Center";
+}
+
+<h2 class="text-center my-4">
+    Welcome to Pixel Heaven Customer Center (Add or browse existing customers)</h2>
+
+<p class="text-center">
+    <a asp-action="AddCustomer" class="btn btn-primary">Add New Customer</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <input type="text" name="searchTerm" value="@ViewData["SearchTerm"]" placeholder="Search customers" class="form-control" style="width:300px; display:inline-block;" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+
+<table class="rounded-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+
+            <td>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="PartitionKey" value="@item.PartitionKey" />
+                        <input type="hidden" name="RowKey" value="@item.RowKey" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure');">Delete</button>
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

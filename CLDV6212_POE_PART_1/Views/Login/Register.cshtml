@@ -1,0 +1,113 @@
+﻿@model CLDV6212_POE_PART_1.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background: #f5f7fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .register-heading {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
+        margin-top: 40px;
+        color: #333;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .register-container {
+        width: 450px;
+        margin: 30px auto 50px auto;
+        padding: 30px;
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    a {
+        font-weight: 600;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<h1 class="register-heading">Create Your Pixel Heaven Account</h1>
+
+<div class="register-container">
+    <h2>Create Account</h2>
+
+    <form asp-action="Register" method="post" class="mt-3">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+
+    <p>
+        Already have an account? <a asp-action="Index">Login here</a>
+    </p>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

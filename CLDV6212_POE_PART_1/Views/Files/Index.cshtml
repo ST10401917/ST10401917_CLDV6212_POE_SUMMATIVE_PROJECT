@@ -1,0 +1,53 @@
+﻿@model List<CLDV6212_POE_PART_1.Models.FileModel>
+
+@{
+    ViewData["Title"] = "Contract Page";
+}
+
+<h2 class="text-center my-4"> Upload your contracts here!! </h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="mb-4">
+    <form asp-action="UploadFile" method="post" enctype="multipart/form-data" class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="file" class="form-label">Upload Contract File Here:</label>
+        </div>
+        <div class="col-auto">
+            <input type="file" name="file" class="form-control" required />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+
+    </form>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var file in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@file.Name</h5>
+                        <p class="card-text mb-1"><strong>Size:</strong> @file.DisplaySize</p>
+                        <p class="card-text mb-0"><strong>Last Modified:</strong> @file.lastModified.ToString("g")</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-secondary mt-3">
+        No files found.
+    </div>
+}

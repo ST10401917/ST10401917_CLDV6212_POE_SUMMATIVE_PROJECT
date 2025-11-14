@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CLDV6212_POE_PART_1.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2 class="text-center my-4"> Welcome to Pixel Heaven Game Store </h2>
+
+@{
+var role = Context.Session.GetString("Role");
+}
+
+@if (role == "Admin")
+{
+<p class="text-center">
+    <a asp-action="AddProduct" class="btn btn-primary">Add New Product</a>
+</p>
+}
+
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
+<div class="products">
+    @foreach (var item in Model)
+    {
+        <div class="product-card">
+            @if (!string.IsNullOrEmpty(item.ImageUrl))
+            {
+                <img src="@item.ImageUrl" alt="@item.Product_Name" />
+            }
+            else
+            {
+                <img src="/image/default-product.jpg" alt="No Image" />
+            }
+
+            <h3>@item.Product_Name</h3>
+            <p>@item.Description</p>
+            <p class="price">R @item.Price</p>
+
+            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                <input type="hidden" name="productId" value="@item.RowKey" />
+                <input type="number" name="quantity" value="1" min="1" />
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+
+            @if (role == "Admin")
+            {
+                <form asp-action="Delete" method="post" style="display:inline;">
+                    <input type="hidden" name="partitionKey" value="@item.PartitionKey" />
+                <input type="hidden" name="rowKey" value="@item.RowKey" />
+                <input type="hidden" name="imageUrl" value="@item.ImageUrl" />
+                <button type="submit" class="btn btn-danger"
+                        onclick="return confirm('Are you sure you want to delete this product?');">
+                    Delete
+                </button>
+            </form>
+            }
+
+        </div>
+    }
+</div>

@@ -1,0 +1,232 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/image/background.jpg");
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Label Text */
+label {
+    color: white;
+}
+
+/* Navbar Custom Style */
+.navbar-custom {
+    background-color: #A020F0; /* Purple */
+    border-bottom: 3px solid #00bfff; /* Cyan highlight */
+}
+
+    .navbar-custom .navbar-brand {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar-custom .nav-link {
+        color: white;
+        font-weight: 500;
+        margin-right: 15px;
+        padding: 10px 15px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .navbar-custom .nav-link:hover {
+            background-color: #00bfff;
+            border-radius: 5px;
+            color: white;
+        }
+
+/* ------------------- TABLE (Orders / Admin) ------------------- */
+.rounded-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+    .rounded-table thead th {
+        background-color: #004080;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        border: none;
+    }
+
+    .rounded-table tbody tr {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+        .rounded-table tbody tr:hover {
+            transform: scale(1.01);
+            background-color: #fafafa;
+        }
+
+    .rounded-table tbody td {
+        padding: 16px;
+        border-top: none;
+        color: black;
+        font-weight: 500;
+    }
+
+    .rounded-table tbody tr td:first-child {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+
+    .rounded-table tbody tr td:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+/* ------------------- PRODUCT GRID ------------------- */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 2rem 0;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+    color: black;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .product-card .price {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 12px;
+    }
+
+/* ------------------- BUTTONS ------------------- */
+.btn-view {
+    background-color: #0dcaf0;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: black;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-buy {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-view:hover {
+    background-color: #0bb1d4;
+}
+
+.btn-edit:hover {
+    background-color: #e6b200;
+}
+
+.btn-delete:hover {
+    background-color: #b02a37;
+}
+
+.btn-buy:hover {
+    background-color: #218838;
+}
+
+/* ------------------- IMAGE STYLES ------------------- */
+.venue-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.venue-info {
+    display: flex;
+    align-items: center;
+}
+
+
+.card {
+    border-radius: 12px;
+}
+
+    .card p {
+        margin: 0.5rem 0;
+        font-weight: 500;
+    }
