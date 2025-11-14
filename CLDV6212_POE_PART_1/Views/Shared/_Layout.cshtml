@@ -21,18 +21,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarContent">
 
-                    @* FIXED SESSION KEY *@
                     @{
                         var role = Context.Session.GetString("Role");
+
                     }
 
                     <ul class="navbar-nav ms-auto">
-                        @*  Always show Home *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        @*  NOT LOGGED IN: Only show Login *@
                         @if (string.IsNullOrEmpty(role))
                         {
                             <li class="nav-item">
@@ -41,7 +39,6 @@
                         }
                         else if (role == "Admin")
                         {
-                            @*  ADMIN FULL ACCESS *@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Customer" asp-action="Index">Customers Center</a>
                             </li>
@@ -64,7 +61,6 @@
                         }
                         else if (role == "Customer")
                         {
-                            @*  CUSTOMER ACCESS ONLY TO BROWSE PRODUCTS *@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">Browse Products</a>
                             </li>
@@ -75,7 +71,6 @@
 
                         }
 
-                        @*  ONLY show Logout if logged in *@
                         @if (!string.IsNullOrEmpty(role))
                         {
                             <li class="nav-item">
@@ -86,7 +81,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile">My Account</a>
                         </li>
+
+                        @{
+                            var fullName = Context.Session.GetString("FullName");
+                        }
+                        @if (!string.IsNullOrEmpty(fullName))
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link">Welcome, @fullName!</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-warning">Not logged in</span>
+                            </li>
+                        }
+                        
                     </ul>
+                        
 
                 </div>
             </div>

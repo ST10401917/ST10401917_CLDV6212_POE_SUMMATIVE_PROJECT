@@ -43,11 +43,17 @@ namespace CLDV6212_POE_PART_1.Controllers
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetString("Role", user.Role);
 
+            HttpContext.Session.SetString("FullName", user.FirstName + " " + user.LastName);
+
+
             // Redirect based on role
             if (user.Role == "Admin")
                 return RedirectToAction("Index", "Home"); // Admin home
             else
                 return RedirectToAction("Index", "Home"); // Customer home
+
+
+
         }
 
         //  Logout 
@@ -85,5 +91,6 @@ namespace CLDV6212_POE_PART_1.Controllers
             return RedirectToAction("Index");
         }
 
+        
     }
 }
